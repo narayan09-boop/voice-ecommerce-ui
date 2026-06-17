@@ -4,7 +4,8 @@ import {
   Search, Mic, Bell, MapPin, ChevronRight, ChevronLeft,
   Heart, ShoppingCart, Star, Plus, Minus, X, User,
   SlidersHorizontal, Volume2, Trash2, Check, Package,
-  Tag, Filter, Sun, Moon,
+  Tag, Filter, Sun, Moon, Facebook, Twitter, Linkedin, Instagram,
+  Mail, Phone, MapPin as LocationIcon, ArrowRight, Truck, Shield, RotateCcw,
 } from "lucide-react";
 import { create } from "zustand";
 
@@ -522,7 +523,7 @@ function HeroCarousel({ onAddToCart }: { onAddToCart: (p: Product) => void }) {
 
   return (
     <section className="max-w-[1400px] mx-auto px-6 pt-6 pb-4">
-      <SectionHeader title="Featured Products" action="View all" />
+      
 
       <div
         className="relative flex items-center justify-center"
@@ -1341,6 +1342,210 @@ function SearchResults({
   );
 }
 
+// ─── Footer Component ─────────────────────────────────────────────────────────
+
+function Footer() {
+  const dark = useDark();
+  
+  const footerSections = [
+    {
+      title: "Shop",
+      links: ["Electronics", "Fashion", "Footwear", "Watches", "Bags", "Sports"]
+    },
+    {
+      title: "Support",
+      links: ["Contact Us", "FAQ", "Shipping Info", "Returns", "Track Order", "Warranty"]
+    },
+    {
+      title: "Company",
+      links: ["About Us", "Careers", "Blog", "Press", "Sustainability", "Investors"]
+    },
+    {
+      title: "Legal",
+      links: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Accessibility", "Contact", "Sitemap"]
+    }
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, link: "#", label: "Facebook" },
+    { icon: Twitter, link: "#", label: "Twitter" },
+    { icon: Instagram, link: "#", label: "Instagram" },
+    { icon: Linkedin, link: "#", label: "LinkedIn" },
+  ];
+
+  const trustBadges = [
+    { icon: Truck, label: "Free Shipping", desc: "On orders over ₹999" },
+    { icon: Shield, label: "Secure Payment", desc: "100% protected transactions" },
+    { icon: RotateCcw, label: "Easy Returns", desc: "30-day return policy" },
+    { icon: Package, label: "Fast Delivery", desc: "2-3 days nationwide" },
+  ];
+
+  return (
+    <footer className="transition-colors duration-300" style={{ background: tv(T.navBg, dark) }}>
+      {/* Trust Badges Section */}
+      <div className="border-b transition-colors duration-300" style={{ borderColor: tv(T.navBorder, dark) }}>
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {trustBadges.map((badge) => (
+              <div key={badge.label} className="flex items-center gap-4 p-4 rounded-lg transition-colors duration-300" 
+                style={{ background: tv(T.mutedBg, dark) }}>
+                <div style={{ color: tv(T.accent, dark) }}>
+                  <badge.icon size={28} />
+                </div>
+                <div>
+                  <div className="font-semibold text-sm transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+                    {badge.label}
+                  </div>
+                  <div className="text-xs transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+                    {badge.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Newsletter Section */}
+      <div className="border-b transition-colors duration-300" style={{ borderColor: tv(T.navBorder, dark) }}>
+        <div className="max-w-7xl mx-auto px-6 py-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-bold mb-2 transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+                Subscribe to Our Newsletter
+              </h3>
+              <p className="text-sm transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+                Get exclusive deals, new arrivals & special offers directly to your inbox.
+              </p>
+            </div>
+            <div className="flex gap-2 w-full md:w-auto">
+              <input type="email" placeholder="Enter your email"
+                className="flex-1 md:flex-none px-4 py-2.5 rounded-lg transition-colors duration-300 outline-none"
+                style={{
+                  background: tv(T.inputBg, dark),
+                  color: tv(T.textPrimary, dark),
+                  borderColor: tv(T.inputBorder, dark),
+                  border: `1px solid ${tv(T.inputBorder, dark)}`
+                }}
+              />
+              <button className="px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 hover:shadow-lg"
+                style={{ background: tv(T.accent, dark), color: tv(T.accentText, dark) }}>
+                Subscribe
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
+          {/* Brand Section */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4 transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+              <span style={{ color: tv(T.accent, dark) }}>V</span>ANI
+            </h2>
+            <p className="text-sm mb-6 transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+              Your ultimate destination for premium products, fast delivery, and exceptional customer service.
+            </p>
+            <div className="flex gap-3">
+              {socialLinks.map(({ icon: Icon, link, label }) => (
+                <a key={label} href={link}
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                  style={{
+                    background: tv(T.mutedBg, dark),
+                    color: tv(T.accent, dark)
+                  }}
+                  aria-label={label}>
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Links Sections */}
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h4 className="font-semibold mb-4 transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+                {section.title}
+              </h4>
+              <ul className="space-y-2.5">
+                {section.links.map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-sm transition-all duration-200 hover:translate-x-1 inline-block"
+                      style={{ color: tv(T.textMuted, dark) }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = tv(T.accent, dark)}
+                      onMouseLeave={(e) => e.currentTarget.style.color = tv(T.textMuted, dark)}>
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Contact Section */}
+        <div className="border-t transition-colors duration-300 pt-8 mb-8" style={{ borderColor: tv(T.navBorder, dark) }}>
+          <h4 className="font-semibold mb-4 transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+            Get In Touch
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="tel:+91-1234567890" className="flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 hover:opacity-80"
+              style={{ background: tv(T.mutedBg, dark) }}>
+              <Phone size={20} style={{ color: tv(T.accent, dark) }} />
+              <div>
+                <div className="text-xs transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+                  Call Us
+                </div>
+                <div className="font-semibold text-sm transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+                  +91-1234567890
+                </div>
+              </div>
+            </a>
+            <a href="mailto:support@vani.com" className="flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 hover:opacity-80"
+              style={{ background: tv(T.mutedBg, dark) }}>
+              <Mail size={20} style={{ color: tv(T.accent, dark) }} />
+              <div>
+                <div className="text-xs transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+                  Email Us
+                </div>
+                <div className="font-semibold text-sm transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+                  support@vani.com
+                </div>
+              </div>
+            </a>
+            <a href="#" className="flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 hover:opacity-80"
+              style={{ background: tv(T.mutedBg, dark) }}>
+              <LocationIcon size={20} style={{ color: tv(T.accent, dark) }} />
+              <div>
+                <div className="text-xs transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+                  Visit Us
+                </div>
+                <div className="font-semibold text-sm transition-colors duration-300" style={{ color: tv(T.textPrimary, dark) }}>
+                  123 Market St, City
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom Footer */}
+        <div className="border-t transition-colors duration-300 pt-6 flex flex-col md:flex-row justify-between items-center gap-4"
+          style={{ borderColor: tv(T.navBorder, dark) }}>
+          <p className="text-sm transition-colors duration-300" style={{ color: tv(T.textMuted, dark) }}>
+          
+          </p>
+          <div className="flex gap-4">
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 // ─── Main App ─────────────────────────────────────────────────────────────────
 
 export default function App() {
@@ -1417,6 +1622,8 @@ export default function App() {
           <RecommendedSection onAddToCart={addItem} />
           <RecentlyViewedSection onAddToCart={addItem} />
         </main>
+
+        <Footer />
 
         <BottomDock
           onFilters={() => setFiltersOpen(true)}
